@@ -74,6 +74,11 @@ public class SampleReference {
     @NonNull
     public static native SampleReference init();
 
+
+
+    @SwiftFunc
+    public native void retreiveAllContacts();
+
     // TODO: Impossible to generate for now. Add extra check for JavaSwift protocol before casting to .javaObject()
     //@Nullable @SwiftFunc
     //public native SampleDelegateAndroid getDelegate();

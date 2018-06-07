@@ -15,6 +15,8 @@ public protocol SampleDelegate: class {
     func throwableFunc(_ flag: Bool) throws
 
     func throwableFuncWithReturnType(_ flag: Bool) throws -> String
+
+    func getRSMAContact() -> RSMAContact?
 }
 
 public protocol SampleBlockDelegate {
@@ -46,10 +48,22 @@ public class SampleReference {
     public var string: String = "str1"
     public static var staticString: String = "str1"
 
+    public var sampleDelegate: SampleDelegate?
 	public init() {
 		
 	}
 
+
+    public func retreiveAllContacts() {
+        var contacts: [RSMAContact] = []
+
+        for _ in 1...1024 {
+            if let contact = delegate!.getRSMAContact() {
+              contacts.append(contact)
+            }
+        }
+        NSLog("contacts size: \(contacts.count)")
+    }
     public func getRandomValue() -> SampleValue {
     	return SampleValue(string: UUID().uuidString)
     }

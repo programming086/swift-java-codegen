@@ -14,6 +14,7 @@ import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.test.runner.AndroidJUnit4;
 import android.test.suitebuilder.annotation.LargeTest;
+import android.util.Log;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -111,6 +112,17 @@ public class SampleReferenceTest {
         }
         JavaSwift.dumpReferenceTables();
         Assert.assertTrue(sampleValueList.size() == 1024);
+    }
+
+    @Test
+    public void testLocalTableOverflowWithDelegate() {
+        this.sampleReference.setDelegate(new SampleDelegateAndroid() {
+            @Override
+            void onSetSampleValue(SampleValue value) {
+
+            }
+        });
+        this.sampleReference.retreiveAllContacts();
     }
 
     @Test
